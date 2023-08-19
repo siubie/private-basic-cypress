@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", () => {
+  //Arrange
+  cy.visit("https://v2starter.putraprima.id/");
+  cy.get(":nth-child(2) > .form-control").clear();
+  cy.get(":nth-child(2) > .form-control").type("superadmin@gmail.com");
+  cy.get(":nth-child(3) > .form-control").clear();
+  cy.get(":nth-child(3) > .form-control").type("password");
+  cy.get(".btn").click();
+  cy.visit("https://v2starter.putraprima.id/user-management/user");
+  cy.contains("Create New User").click();
+});
